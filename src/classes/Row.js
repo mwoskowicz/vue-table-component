@@ -18,7 +18,7 @@ export default class Row {
     getFilterableValue(columnName) {
         const value = this.getValue(columnName);
 
-        if (! value) {
+        if (!value) {
             return '';
         }
 
@@ -39,7 +39,7 @@ export default class Row {
         }
 
         if (dataType.startsWith('date')) {
-            const format  = dataType.replace('date:', '');
+            const format = dataType.replace('date:', '');
 
             return moment(value, format).format('YYYYMMDDHHmmss');
         }

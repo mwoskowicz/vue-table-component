@@ -41,9 +41,15 @@ export default class Column {
                 const value2 = row2.getSortableValue(sortFieldName);
 
                 if (sortOrder === 'desc') {
+                    if (value1 === value2 && row1.data.id && row2.data.id) {
+                        return row2.data.id < row1.data.id ? -1 : 1;
+                    }
                     return value2 < value1 ? -1 : 1;
                 }
 
+                if (value1 === value2 && row1.data.id && row2.data.id) {
+                    return row2.data.id < row1.data.id ? -1 : 1;
+                }
                 return value1 < value2 ? -1 : 1;
             };
         }
@@ -53,10 +59,18 @@ export default class Column {
             const value2 = row2.getSortableValue(sortFieldName);
 
             if (sortOrder === 'desc') {
-                return value2.localeCompare(value1);
+                const result = value2.localeCompare(value1);
+                if(result === 0 && row1.data.id && row2.data.id) {
+                    return row2.data.id < row1.data.id ? -1 : 1;
+                }
+                return result;
             }
 
-            return value1.localeCompare(value2);
+            const result = value1.localeCompare(value2);
+            if (result === 0 && row1.data.id && row2.data.id) {
+                return row2.data.id < row1.data.id ? -1 : 1;
+            }
+            return result;
         };
     }
 
