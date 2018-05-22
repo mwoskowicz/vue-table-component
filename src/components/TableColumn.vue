@@ -13,6 +13,8 @@
         props: {
             show: { required: false, type: String },
             label: { default: null, type: String },
+            htmlLabel: { default: null, type: String },
+
             dataType: { default: 'string', type: String },
 
             sortable: { default: true, type: Boolean },

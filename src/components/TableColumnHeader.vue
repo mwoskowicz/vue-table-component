@@ -8,7 +8,11 @@
         :aria-disabled="ariaDisabled"
         v-if="this.isVisible"
     >
-        {{ label }}
+        <span v-if="label">
+            {{ label  }}
+        </span>
+        <span v-else v-html="htmlLabel" />
+
     </th>
 </template>
 
@@ -57,11 +61,16 @@
 
             label() {
                 if (this.column.label === null) {
+                    if (this.column.html)
                     return this.column.show;
                 }
 
                 return this.column.label;
             },
+
+            htmlLabel() {
+                return this.column.htmlLabel
+            }
         },
 
         methods: {

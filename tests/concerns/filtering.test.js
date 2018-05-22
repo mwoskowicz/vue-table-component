@@ -81,47 +81,4 @@ describe('Filtering', () => {
         expect(table.displayedRows).toHaveLength(1);
         expect(table.displayedRows[0].data.firstName).toBe('Paul');
     });
-
-    it('can add a custom html class on the filter input', async () => {
-        document.body.innerHTML = `
-            <div id="app">
-                <table-component
-                    :data="[{ firstName: 'John', songs: 72 },
-                            { firstName: 'Paul', songs: 70 },
-                            { firstName: 'George', songs: 22 },
-                            { firstName: 'Ringo', songs: 2 }]"
-                    sort-by="lastName"
-                    sort-order="desc"
-                    filter-input-class="my-filter-class"
-                >
-                    <table-column show="firstName" label="First name" filter-on="songs"></table-column>
-                </table-component>
-            </div>
-        `;
-
-        await createVm();
-
-        expect(document.body.innerHTML).toMatchSnapshot();
-    });
-
-    it('hides the filter when no columns are filterable', async () => {
-        document.body.innerHTML = `
-            <div id="app">
-                <table-component
-                    :data="[{ firstName: 'John', songs: 72 },
-                            { firstName: 'Paul', songs: 70 },
-                            { firstName: 'George', songs: 22 },
-                            { firstName: 'Ringo', songs: 2 }]"
-                    sort-by="lastName"
-                    sort-order="desc"
-                >
-                    <table-column show="firstName" label="First name" :filterable="false"></table-column>
-                </table-component>
-            </div>
-        `;
-
-        await createVm();
-
-        expect(document.body.innerHTML).toMatchSnapshot();
-    });
 });
