@@ -1520,6 +1520,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         props: {
             show: { required: false, type: String },
             label: { default: null, type: String },
+            htmlLabel: { default: null, type: String },
+
             dataType: { default: 'string', type: String },
 
             sortable: { default: true, type: Boolean },
@@ -1603,10 +1605,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             },
             label: function label() {
                 if (this.column.label === null) {
-                    return this.column.show;
+                    if (this.column.html) return this.column.show;
                 }
 
                 return this.column.label;
+            },
+            htmlLabel: function htmlLabel() {
+                return this.column.htmlLabel;
             }
         },
 
@@ -2148,7 +2153,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         function Column(columnComponent) {
             (0, _classCallCheck3.default)(this, Column);
 
-            var properties = (0, _helpers.pick)(columnComponent, ['show', 'label', 'dataType', 'sortable', 'sortBy', 'filterable', 'filterOn', 'hidden', 'formatter', 'cellClass', 'headerClass']);
+            var properties = (0, _helpers.pick)(columnComponent, ['show', 'label', 'htmlLabel', 'dataType', 'sortable', 'sortBy', 'filterable', 'filterOn', 'hidden', 'formatter', 'cellClass', 'headerClass']);
 
             for (var property in properties) {
                 this[property] = columnComponent[property];
@@ -5110,7 +5115,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.clicked
     }
-  }, [_vm._v("\n    " + _vm._s(_vm.label) + "\n")]) : _vm._e()
+  }, [(_vm.label) ? _c('span', [_vm._v("\n        " + _vm._s(_vm.label) + "\n    ")]) : _c('span', {
+    domProps: {
+      "innerHTML": _vm._s(_vm.htmlLabel)
+    }
+  })]) : _vm._e()
 },staticRenderFns: []}
 
 /***/ }),

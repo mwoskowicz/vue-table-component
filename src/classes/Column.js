@@ -3,7 +3,7 @@ import { pick } from '../helpers';
 export default class Column {
     constructor(columnComponent) {
         const properties = pick(columnComponent, [
-            'show', 'label', 'dataType', 'sortable', 'sortBy', 'filterable',
+            'show', 'label', 'htmlLabel', 'dataType', 'sortable', 'sortBy', 'filterable',
             'filterOn', 'hidden', 'formatter', 'cellClass', 'headerClass',
         ]);
 
